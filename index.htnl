@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Exam Prep EdTech - 100% Exact Knowledge Base</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Sarabun:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Sarabun', sans-serif; }
+    .heading-font { font-family: 'Chakra Petch', sans-serif; }
+    .code-font { font-family: 'JetBrains Mono', monospace; }
+    .perspective-1000 { perspective: 1000px; }
+    .transform-style-3d { transform-style: preserve-3d; }
+    .backface-hidden { backface-visibility: hidden; }
+    .rotate-y-180 { transform: rotateY(180deg); }
+    .transition-transform-600 { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    @media print {
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      body { background: white !important; color: black !important; font-size: 11pt; }
+      .cheat-sheet-container { box-shadow: none !important; border: 1px solid #ccc !important; padding: 0 !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- TOP APP HEADER -->
+  <header class="no-print bg-slate-800/90 backdrop-blur border-b border-slate-700 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30">
+          <i class="fa-solid fa-graduation-cap text-lg"></i>
+        </div>
+        <div>
+          <h1 class="heading-font font-bold text-lg text-white tracking-wide flex items-center gap-2">
+            ENG EXAM TUTOR <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">100% EXACT KB</span>
+          </h1>
+          <p class="text-xs text-slate-400">ระบบติวเข้มและจำลองข้อสอบภาษาอังกฤษตรงตามหลักสูตรแบบตรงตัว 100%</p>
+        </div>
+      </div>
+
+      <!-- TTS Speed Controller -->
+      <div class="hidden sm:flex items-center space-x-3 bg-slate-900/60 px-3 py-1.5 rounded-lg border border-slate-700 text-xs">
+        <span class="text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-volume-high text-indigo-400"></i> เสียงอ่าน:</span>
+        <select id="ttsRate" class="bg-slate-800 text-slate-200 rounded px-2 py-1 border border-slate-600 focus:outline-none focus:border-indigo-500">
+          <option value="0.8">0.8x (ช้าชัดเจน)</option>
+          <option value="1.0" selected>1.0x (ปกติ)</option>
+          <option value="1.2">1.2x (เร็ว)</option>
+        </select>
+        <button onclick="speakText('Welcome to the English Exam Preparation System. Every question matches your knowledge base exactly!')" class="text-indigo-400 hover:text-indigo-300 transition" title="ทดสอบเสียง">
+          <i class="fa-solid fa-play"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- NAVIGATION TABS -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-1 sm:space-x-4 overflow-x-auto py-2 border-t border-slate-700/50">
+      <button onclick="switchTab('flashcards')" id="tabBtn-flashcards" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 bg-indigo-600 text-white shadow">
+        <i class="fa-solid fa-clone"></i> Dual-Definition Flashcards
+      </button>
+      <button onclick="switchTab('mock-exam')" id="tabBtn-mock-exam" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700">
+        <i class="fa-solid fa-file-signature"></i> Mock Exam Simulator
+      </button>
+      <button onclick="switchTab('cheat-sheet')" id="tabBtn-cheat-sheet" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700">
+        <i class="fa-solid fa-file-lines"></i> Cheat Sheet สรุป 1 หน้า
+      </button>
+      <button onclick="switchTab('audio-hub')" id="tabBtn-audio-hub" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700">
+        <i class="fa-solid fa-headphones"></i> Audio Hub (TTS)
+      </button>
+      <button onclick="switchTab('database')" id="tabBtn-database" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700">
+        <i class="fa-solid fa-database"></i> คลังเนื้อหา 7 หมวด
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: DUAL-DEFINITION FLASHCARDS                                         -->
+    <!-- ========================================================================= -->
+    <section id="tab-flashcards" class="tab-content block space-y-6">
+      <div class="bg-slate-800/80 rounded-2xl p-6 border border-slate-700 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 class="heading-font text-xl font-bold text-white flex items-center gap-2">
+            <span class="p-2 rounded-lg bg-indigo-500/20 text-indigo-400 border border-indigo-500/30"><i class="fa-solid fa-clone"></i></span>
+            Dual-Definition Flashcards (หมวดที่ 1: คำศัพท์เน้นย้ำ)
+          </h2>
+          <p class="text-sm text-slate-400 mt-1">
+            ทดสอบความจำ 2 บริบท: ความหมายจากหนังสือเรียน <span class="text-sky-400 font-semibold">(Code: b)</span> VS จากอินเทอร์เน็ต <span class="text-emerald-400 font-semibold">(Code: g)</span>
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-700 text-center">
+            <div class="text-xs text-slate-400">Streak ความแม่นยำ</div>
+            <div id="fcStreak" class="font-bold text-lg text-emerald-400">0 🔥</div>
+          </div>
+          <div class="bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-700 text-center">
+            <div class="text-xs text-slate-400">ทายถูก / ทั้งหมด</div>
+            <div id="fcScore" class="font-bold text-lg text-indigo-400">0 / 0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FLASHCARD INTERACTIVE PLAYGROUND -->
+      <div class="max-w-2xl mx-auto space-y-6">
+        <!-- MODE TOGGLE -->
+        <div class="flex justify-center">
+          <div class="bg-slate-800 p-1.5 rounded-xl border border-slate-700 inline-flex">
+            <button onclick="setFcMode('guess')" id="fcMode-guess" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white shadow">
+              🎯 โหมดทายแหล่งที่มา (Book หรือ Google?)
+            </button>
+            <button onclick="setFcMode('flip')" id="fcMode-flip" class="px-4 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white">
+              🔄 โหมดพลิกการ์ด (Flashcard Flip)
+            </button>
+          </div>
+        </div>
+
+        <!-- GUESS MODE VIEW -->
+        <div id="fcView-guess" class="space-y-4">
+          <div class="bg-slate-800 border-2 border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl relative">
+            <div class="flex justify-between items-center text-xs text-slate-400 mb-4">
+              <span class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700">คำที่ <span id="guessIndex">1</span>/10</span>
+              <button onclick="speakFcCurrent()" class="text-indigo-400 hover:text-indigo-300 flex items-center gap-1.5 px-3 py-1 bg-slate-900/80 rounded-lg border border-slate-700 transition">
+                <i class="fa-solid fa-volume-high"></i> ฟังเสียง
+              </button>
+            </div>
+
+            <div class="text-center py-4 space-y-3">
+              <div id="guessWord" class="heading-font text-3xl sm:text-4xl font-extrabold text-white tracking-wider">remain</div>
+              <div class="text-xs text-slate-400 italic">ข้อความนิยาม / ประโยคตัวอย่างที่ต้องการทดสอบ:</div>
+              <div id="guessDefinition" class="text-lg sm:text-xl font-medium text-amber-300 bg-slate-900/90 p-5 rounded-xl border border-slate-700 code-font">
+                "to stay the same"
+              </div>
+            </div>
+
+            <!-- BUTTONS BOOK vs GOOGLE -->
+            <div id="guessButtons" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+              <button onclick="submitFcGuess('b')" class="py-4 px-6 rounded-xl bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-500 hover:to-blue-600 text-white font-bold flex items-center justify-center gap-3 shadow-lg shadow-sky-900/30 transition transform active:scale-95">
+                <i class="fa-solid fa-book-open text-xl"></i>
+                <div class="text-left">
+                  <div class="text-xs text-sky-200">หนังสือเรียน</div>
+                  <div class="text-base font-bold">Book (Code: b)</div>
+                </div>
+              </button>
+              <button onclick="submitFcGuess('g')" class="py-4 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white font-bold flex items-center justify-center gap-3 shadow-lg shadow-emerald-900/30 transition transform active:scale-95">
+                <i class="fa-brands fa-google text-xl"></i>
+                <div class="text-left">
+                  <div class="text-xs text-emerald-200">อินเทอร์เน็ต / Search</div>
+                  <div class="text-base font-bold">Google (Code: g)</div>
+                </div>
+              </button>
+            </div>
+
+            <!-- RESULT BANNER -->
+            <div id="guessResult" class="hidden mt-6 p-4 rounded-xl border space-y-3 transition">
+              <div id="guessResultHeader" class="font-bold text-lg flex items-center gap-2"></div>
+              <div class="text-sm space-y-2 pt-2 border-t border-slate-700/60">
+                <div class="p-2.5 rounded bg-sky-950/50 border border-sky-800/60 text-sky-200 text-xs">
+                  <span class="font-bold text-sky-300">📘 Book (b):</span> <span id="guessDetailB"></span>
+                </div>
+                <div class="p-2.5 rounded bg-emerald-950/50 border border-emerald-800/60 text-emerald-200 text-xs">
+                  <span class="font-bold text-emerald-300">🌐 Google (g):</span> <span id="guessDetailG"></span>
+                </div>
+              </div>
+              <div class="pt-2 text-right">
+                <button onclick="nextFcQuestion()" class="px-6 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition shadow">
+                  คำถัดไป <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FLIP MODE VIEW -->
+        <div id="fcView-flip" class="hidden space-y-4">
+          <div class="perspective-1000 w-full min-h-[340px]">
+            <div id="flipCardInner" onclick="toggleCardFlip()" class="relative w-full h-full transform-style-3d transition-transform-600 cursor-pointer min-h-[340px]">
+              <!-- FRONT -->
+              <div class="absolute inset-0 backface-hidden bg-slate-800 border-2 border-slate-700 hover:border-indigo-500 rounded-2xl p-8 flex flex-col justify-between items-center text-center shadow-2xl">
+                <div class="w-full flex justify-between items-center text-xs text-slate-400">
+                  <span class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700">ใบที่ <span id="flipIndex">1</span>/10</span>
+                  <span class="text-indigo-400"><i class="fa-solid fa-hand-pointer"></i> คลิกเพื่อพลิกดู 2 นิยาม</span>
+                </div>
+                <div class="my-auto space-y-3">
+                  <div class="text-xs uppercase tracking-widest text-slate-400 font-semibold">Vocabulary Word</div>
+                  <div id="flipFrontWord" class="heading-font text-4xl sm:text-5xl font-extrabold text-white">remain</div>
+                  <button onclick="event.stopPropagation(); speakText(document.getElementById('flipFrontWord').innerText)" class="px-4 py-1.5 bg-slate-900 text-indigo-400 hover:text-white rounded-full text-xs font-semibold border border-slate-700 hover:border-indigo-500 transition inline-flex items-center gap-2">
+                    <i class="fa-solid fa-volume-high"></i> ฟังการออกเสียง
+                  </button>
+                </div>
+                <div class="text-xs text-slate-500">คลิกตรงไหนก็ได้บนการ์ดเพื่อดูนิยาม (b) & (g)</div>
+              </div>
+
+              <!-- BACK -->
+              <div class="absolute inset-0 backface-hidden rotate-y-180 bg-slate-800 border-2 border-indigo-500 rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl">
+                <div class="flex justify-between items-center text-xs text-slate-400">
+                  <span id="flipBackWord" class="font-bold text-white text-base">remain</span>
+                  <span class="text-slate-400 text-xs"><i class="fa-solid fa-rotate"></i> พลิกกลับ</span>
+                </div>
+                <div class="space-y-4 my-auto">
+                  <!-- Book -->
+                  <div class="p-3.5 rounded-xl bg-sky-950/60 border border-sky-700/60 text-sky-200">
+                    <div class="flex items-center justify-between text-xs font-bold text-sky-400 mb-1">
+                      <span><i class="fa-solid fa-book-open"></i> Book Definition (Code: b)</span>
+                      <button onclick="event.stopPropagation(); speakText(document.getElementById('flipDefB').innerText)" class="text-sky-300 hover:text-white">
+                        <i class="fa-solid fa-volume-high"></i>
+                      </button>
+                    </div>
+                    <div id="flipDefB" class="text-sm font-medium text-slate-100">to stay the same</div>
+                  </div>
+                  <!-- Google -->
+                  <div class="p-3.5 rounded-xl bg-emerald-950/60 border border-emerald-700/60 text-emerald-200">
+                    <div class="flex items-center justify-between text-xs font-bold text-emerald-400 mb-1">
+                      <span><i class="fa-brands fa-google"></i> Google Definition (Code: g)</span>
+                      <button onclick="event.stopPropagation(); speakText(document.getElementById('flipDefG').innerText)" class="text-emerald-300 hover:text-white">
+                        <i class="fa-solid fa-volume-high"></i>
+                      </button>
+                    </div>
+                    <div id="flipDefG" class="text-sm font-medium text-slate-100">to stay in same place, keep the same condition.</div>
+                  </div>
+                </div>
+                <div class="text-center text-xs text-slate-500">แตะเพื่อพลิกกลับด้านหน้า</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FLIP CONTROLS -->
+          <div class="flex items-center justify-between pt-2">
+            <button onclick="prevFlipCard()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-sm font-medium text-slate-300 hover:text-white transition">
+              <i class="fa-solid fa-arrow-left mr-2"></i> คำก่อนหน้า
+            </button>
+            <button onclick="shuffleFlipCards()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-sm font-medium text-indigo-400 hover:text-indigo-300 transition">
+              <i class="fa-solid fa-shuffle mr-2"></i> สลับลำดับ
+            </button>
+            <button onclick="nextFlipCard()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-sm font-medium text-slate-300 hover:text-white transition">
+              คำถัดไป <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: EXACT-MATCH MOCK EXAM SIMULATOR                                    -->
+    <!-- ========================================================================= -->
+    <section id="tab-mock-exam" class="tab-content hidden space-y-6">
+      <!-- EXAM CONTROLLER BAR -->
+      <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl space-y-4">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <h2 class="heading-font text-xl font-bold text-white flex items-center gap-2">
+              <span class="p-2 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"><i class="fa-solid fa-file-signature"></i></span>
+              Exact-Match Mock Exam Simulator
+            </h2>
+            <p class="text-sm text-slate-400 mt-1">
+              สร้างข้อสอบสุ่มแบบ Multiple Choice และ Fill-in-the-Blank โดยดึงตัวเลือกและตัวลวงจากฐานข้อมูลเนื้อหา 100%
+            </p>
+          </div>
+
+          <!-- EXAM CONFIG -->
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-2 rounded-xl border border-slate-700">
+              <span class="text-xs text-slate-400"><i class="fa-regular fa-clock text-indigo-400"></i> ตัวจับเวลา:</span>
+              <select id="examTimerSelect" class="bg-slate-800 text-xs text-white rounded px-2 py-1 border border-slate-600 focus:outline-none">
+                <option value="600">10 นาที</option>
+                <option value="900" selected>15 นาที</option>
+                <option value="1200">20 นาที</option>
+                <option value="0">ไม่จำกัดเวลา</option>
+              </select>
+            </div>
+
+            <div class="flex items-center gap-2 bg-slate-900/90 px-3 py-2 rounded-xl border border-slate-700">
+              <span class="text-xs text-slate-400"><i class="fa-solid fa-list-check text-indigo-400"></i> หมวดข้อสอบ:</span>
+              <select id="examSectionSelect" class="bg-slate-800 text-xs text-white rounded px-2 py-1 border border-slate-600 focus:outline-none">
+                <option value="all" selected>ข้อสอบรวมทุกหมวด (20 ข้อ)</option>
+                <option value="mcq">เฉพาะ Multiple Choice (ความหมาย/คู่ศัพท์)</option>
+                <option value="fill">เฉพาะเติมคำ (Grammar, Idiom, Money, Vocab)</option>
+              </select>
+            </div>
+
+            <button onclick="startNewExam()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-900/30 transition flex items-center gap-2">
+              <i class="fa-solid fa-play"></i> เริ่มทำข้อสอบชุดใหม่
+            </button>
+          </div>
+        </div>
+
+        <!-- ACTIVE EXAM STATUS BAR -->
+        <div id="examStatusBar" class="hidden pt-4 border-t border-slate-700/80 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="text-sm font-semibold text-slate-300">
+              ข้อสอบข้อที่ <span id="currentQuestionNum" class="text-white text-lg font-bold">1</span> / <span id="totalQuestionsNum" class="text-white">20</span>
+            </div>
+            <div class="w-48 bg-slate-900 rounded-full h-2.5 border border-slate-700 overflow-hidden">
+              <div id="examProgressFill" class="bg-gradient-to-r from-indigo-500 to-emerald-500 h-2.5 rounded-full transition-all duration-300" style="width: 5%"></div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div id="timerDisplay" class="font-mono text-base font-bold px-3.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-amber-400 flex items-center gap-2">
+              <i class="fa-regular fa-hourglass-half"></i> <span id="timerCountdown">15:00</span>
+            </div>
+            <button onclick="submitExam(true)" class="px-4 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs transition">
+              ส่งกระดาษคำตอบ <i class="fa-solid fa-paper-plane ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAM CARD VIEW -->
+      <div id="examActiveContainer" class="hidden max-w-3xl mx-auto space-y-6">
+        <div class="bg-slate-800 border-2 border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl relative">
+          <!-- CATEGORY TAG & AUDIO -->
+          <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-700">
+            <span id="qCategoryBadge" class="text-xs px-3 py-1 rounded-full font-semibold bg-indigo-950 text-indigo-300 border border-indigo-700">
+              หมวดที่ 4: Grammar
+            </span>
+            <button onclick="speakCurrentExamQuestion()" class="px-3 py-1 rounded-lg bg-slate-900 text-indigo-400 hover:text-white border border-slate-700 text-xs flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-volume-high"></i> อ่านโจทย์
+            </button>
+          </div>
+
+          <!-- QUESTION TEXT -->
+          <div class="space-y-3 py-2">
+            <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">คำถาม (Question):</div>
+            <div id="qPromptText" class="text-lg sm:text-xl font-bold text-white leading-relaxed code-font bg-slate-900/90 p-5 rounded-xl border border-slate-700">
+              By this time next year, she ________ from university.
+            </div>
+          </div>
+
+          <!-- OPTIONS CONTAINER -->
+          <div class="mt-6 space-y-3" id="qOptionsList">
+            <!-- Dynamically generated exact-match options -->
+          </div>
+
+          <!-- NAV BUTTONS -->
+          <div class="flex justify-between items-center pt-8 mt-6 border-t border-slate-700">
+            <button onclick="prevQuestion()" id="btnPrevQ" class="px-5 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-200 text-sm font-semibold transition disabled:opacity-40 disabled:cursor-not-allowed">
+              <i class="fa-solid fa-arrow-left mr-1.5"></i> ย้อนกลับ
+            </button>
+            <div class="text-xs text-slate-400">
+              ตอบแล้ว <span id="answeredCount">0</span> จาก <span id="examTotalCount">20</span> ข้อ
+            </div>
+            <button onclick="nextQuestion()" id="btnNextQ" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition">
+              ข้อถัดไป <i class="fa-solid fa-arrow-right ml-1.5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAM SCORE & REVIEW REPORT -->
+      <div id="examResultReport" class="hidden max-w-4xl mx-auto space-y-6">
+        <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 text-center space-y-4 shadow-2xl">
+          <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border-2 border-emerald-500 mx-auto flex items-center justify-center text-2xl">
+            <i class="fa-solid fa-award"></i>
+          </div>
+          <h3 class="heading-font text-2xl font-bold text-white">ผลการทดสอบ Exam Simulator</h3>
+          <div class="flex justify-center items-baseline gap-2">
+            <span id="finalScore" class="text-5xl font-black text-emerald-400">18</span>
+            <span class="text-xl text-slate-400 font-semibold">/ <span id="finalTotal">20</span></span>
+            <span id="finalPercent" class="text-sm px-2.5 py-0.5 rounded-full bg-slate-700 text-slate-300 ml-2">(90%)</span>
+          </div>
+          <p id="scoreFeedback" class="text-slate-300 text-sm max-w-md mx-auto">
+            ยอดเยี่ยมมาก! คุณจำเนื้อหาและประโยคจากฐานข้อมูลได้อย่างแม่นยำ
+          </p>
+
+          <div class="flex justify-center gap-3 pt-4">
+            <button onclick="startNewExam()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold shadow transition">
+              <i class="fa-solid fa-rotate-right mr-1.5"></i> ทำข้อสอบใหม่อีกครั้ง
+            </button>
+            <button onclick="toggleReviewDetails()" class="px-5 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-200 text-sm font-semibold transition">
+              <i class="fa-solid fa-eye mr-1.5"></i> ดูเฉลยละเอียดและเหตุผล
+            </button>
+          </div>
+        </div>
+
+        <!-- REVIEW LIST -->
+        <div id="examReviewContainer" class="space-y-4">
+          <h4 class="font-bold text-lg text-white flex items-center gap-2">
+            <i class="fa-solid fa-list-check text-indigo-400"></i> เฉลยละเอียดรายข้อ (Exact Knowledge Base Verification)
+          </h4>
+          <div id="reviewQuestionsList" class="space-y-4">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: CHEAT SHEET GENERATOR (1-PAGE SUMMARY)                             -->
+    <!-- ========================================================================= -->
+    <section id="tab-cheat-sheet" class="tab-content hidden space-y-6">
+      <div class="no-print bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="heading-font text-xl font-bold text-white flex items-center gap-2">
+            <span class="p-2 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30"><i class="fa-solid fa-file-lines"></i></span>
+            Cheat Sheet Generator (สรุปเนื้อหาหน้าเดียวฉบับสมบูรณ์)
+          </h2>
+          <p class="text-sm text-slate-400 mt-1">
+            แยกหมวดหมู่ชัดเจน: Vocabulary, Money Expressions, Future Tenses, และ Relative Pronouns สรุปจบในหน้าเดียวเพื่อทบทวนทันทีก่อนเข้าสอบ
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="window.print()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold flex items-center gap-2 shadow transition">
+            <i class="fa-solid fa-print"></i> พิมพ์ Cheat Sheet (PDF)
+          </button>
+          <button onclick="copyCheatSheetMarkdown()" class="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-200 text-sm font-semibold flex items-center gap-2 transition">
+            <i class="fa-solid fa-copy"></i> คัดลอก Markdown
+          </button>
+        </div>
+      </div>
+
+      <!-- CHEAT SHEET PRINTABLE CANVAS -->
+      <div id="cheatSheetContent" class="cheat-sheet-container bg-slate-900 text-slate-100 p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-2xl space-y-8">
+        <!-- SHEET HEADER -->
+        <div class="border-b-2 border-indigo-500 pb-4 flex justify-between items-end">
+          <div>
+            <h3 class="heading-font text-2xl font-black text-white tracking-wide">ENGLISH EXAM HIGH-YIELD CHEAT SHEET</h3>
+            <p class="text-xs text-slate-400 mt-1">ฐานข้อมูลหลักสูตรตรงตามข้อสอบ 100% | ห้ามดัดแปลงคำศัพท์ ประโยค และนิยาม</p>
+          </div>
+          <div class="text-right text-xs text-slate-400 font-mono">
+            Unit 4 & 5 Exact Content
+          </div>
+        </div>
+
+        <!-- SECTION 1: DUAL DEFINITIONS -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-indigo-400 text-base flex items-center gap-2">
+              <span class="w-6 h-6 rounded bg-indigo-500/20 flex items-center justify-center text-xs">1</span>
+              คำศัพท์เน้นย้ำ: แยกนิยาม Book (b) VS Google (g)
+            </h4>
+            <span class="text-xs text-slate-500 italic">10 คำสำคัญ</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left border-collapse border border-slate-700">
+              <thead>
+                <tr class="bg-slate-800 text-slate-300">
+                  <th class="border border-slate-700 p-2 font-bold w-28">คำศัพท์ (Word)</th>
+                  <th class="border border-slate-700 p-2 font-bold text-sky-300">📘 Book Definition (b)</th>
+                  <th class="border border-slate-700 p-2 font-bold text-emerald-300">🌐 Google Definition (g)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800 font-normal" id="cheatSheetDualTable">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SECTION 2: UNIT 4 VOCAB & MATCH -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <h4 class="font-bold text-indigo-400 text-base flex items-center gap-2">
+              <span class="w-6 h-6 rounded bg-indigo-500/20 flex items-center justify-center text-xs">2</span>
+              Unit 4 - Vocabulary & Match
+            </h4>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left border-collapse border border-slate-700">
+                <thead>
+                  <tr class="bg-slate-800 text-slate-300">
+                    <th class="border border-slate-700 p-2 font-bold w-24">คำศัพท์</th>
+                    <th class="border border-slate-700 p-2 font-bold">นิยามความหมาย</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800" id="cheatSheetUnit4VocabTable">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- UNIT 4 SENTENCE FILL -->
+          <div class="space-y-3">
+            <h4 class="font-bold text-indigo-400 text-base flex items-center gap-2">
+              <span class="w-6 h-6 rounded bg-indigo-500/20 flex items-center justify-center text-xs">3</span>
+              Unit 4 - ประโยคเติมคำศัพท์เป๊ะๆ (8 ประโยค)
+            </h4>
+            <div class="bg-slate-800/60 rounded-xl p-3 border border-slate-700 space-y-2 text-xs" id="cheatSheetFillSentences">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: MONEY EXPRESSIONS -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-indigo-400 text-base flex items-center gap-2">
+            <span class="w-6 h-6 rounded bg-indigo-500/20 flex items-center justify-center text-xs">4</span>
+            Unit 4 - Expressions About Money & ประโยคทดสอบ
+          </h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left border-collapse border border-slate-700">
+              <thead>
+                <tr class="bg-slate-800 text-slate-300">
+                  <th class="border border-slate-700 p-2 font-bold w-24">สำนวนเงิน</th>
+                  <th class="border border-slate-700 p-2 font-bold">ความหมาย (Definition)</th>
+                  <th class="border border-slate-700 p-2 font-bold">ตัวอย่างประโยคหลักสูตร</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800" id="cheatSheetMoneyTable">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SECTION 4: GRAMMAR FUTURE TENSES -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-indigo-400 text-base flex items-center gap-2">
+            <span class="w-6 h-6 rounded bg-indigo-500/20 flex items-center justify-center text-xs">5</span>
+            Unit 4 - Grammar: Future Perfect VS Future Perfect Continuous
+          </h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Future Perfect -->
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-sky-800/60 space-y-2">
+              <div class="font-bold text-sky-400 text-sm flex items-center justify-between">
+                <span>Future Perfect</span>
+                <span class="code-font text-xs bg-sky-950 px-2 py-0.5 rounded border border-sky-700">Subject + will + have + V.3</span>
+              </div>
+              <ul class="text-xs space-y-1 text-slate-300 list-disc list-inside" id="cheatSheetFuturePerfList">
+                <!-- Injected -->
+              </ul>
+            </div>
+            <!-- Future Perfect Continuous -->
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-emerald-800/60 space-y-2">
+              <div class="font-bold text-emerald-400 text-sm flex items-center justify-between">
+                <span>Future Perfect Continuous</span>
+                <span class="code-font text-xs bg-emerald-950 px-2 py-0.5 rounded border border-emerald-700">Subject + will + have been + V-ing</span>
+              </div>
+              <ul class="text-xs space-y-1 text-slate-300 list-disc list-inside" id="cheatSheetFuturePerfContList">
+                <!-- Injected -->
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 5: UNIT 5 PERSONALITY & RELATIVE CLAUSES -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <h4 class="font-bold text-indigo-400 text-base flex items-center gap-2">
+              <span class="w-6 h-6 rounded bg-indigo-500/20 flex items-center justify-center text-xs">6</span>
+              Unit 5 - Personality Vocab & Idioms
+            </h4>
+            <div class="space-y-3">
+              <div class="overflow-x-auto">
+                <table class="w-full text-xs text-left border-collapse border border-slate-700">
+                  <tbody class="divide-y divide-slate-800" id="cheatSheetUnit5VocabTable">
+                    <!-- Injected -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="p-3 bg-slate-800/60 rounded-xl border border-slate-700 space-y-1 text-xs">
+                <div class="font-bold text-amber-400">Personality Idioms:</div>
+                <div id="cheatSheetIdiomsList" class="space-y-1 text-slate-300">
+                  <!-- Injected -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- UNIT 5 GRAMMAR -->
+          <div class="space-y-3">
+            <h4 class="font-bold text-indigo-400 text-base flex items-center gap-2">
+              <span class="w-6 h-6 rounded bg-indigo-500/20 flex items-center justify-center text-xs">7</span>
+              Unit 5 - Non-defining Relative Clauses
+            </h4>
+            <div class="bg-rose-950/40 p-3 rounded-xl border border-rose-800/60 text-xs text-rose-200">
+              <span class="font-bold">⚠️ กฎบังคับ:</span> ต้องมีเครื่องหมาย <span class="font-bold underline text-white">Commas (,)</span> ขยายคำนามเฉพาะเสมอ!
+            </div>
+            <div class="space-y-2 text-xs" id="cheatSheetRelClausesList">
+              <!-- Injected -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: AUDIO HUB (TTS)                                                    -->
+    <!-- ========================================================================= -->
+    <section id="tab-audio-hub" class="tab-content hidden space-y-6">
+      <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl space-y-2">
+        <h2 class="heading-font text-xl font-bold text-white flex items-center gap-2">
+          <span class="p-2 rounded-lg bg-violet-500/20 text-violet-400 border border-violet-500/30"><i class="fa-solid fa-headphones"></i></span>
+          Audio Pronunciation Hub (Text-to-Speech)
+        </h2>
+        <p class="text-sm text-slate-400">
+          กดฟังเสียงอ่าน (Read Aloud) สำหรับทุกคำศัพท์ ประโยคตัวอย่าง นิยาม และบทสนทนาในฐานข้อมูล เพื่อฝึกฝนทักษะการฟังและสำเนียงก่อนเข้าสอบจริง
+        </p>
+      </div>
+
+      <!-- FILTER & SEARCH -->
+      <div class="flex flex-col sm:flex-row gap-3 items-center justify-between">
+        <div class="relative w-full sm:w-80">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-500 text-xs"></i>
+          <input type="text" id="audioSearchInput" oninput="renderAudioHub()" placeholder="ค้นหาคำศัพท์ หรือประโยค..." class="w-full bg-slate-800 text-white rounded-xl pl-9 pr-4 py-2 border border-slate-700 text-sm focus:outline-none focus:border-indigo-500">
+        </div>
+        <div class="flex gap-2 w-full sm:w-auto overflow-x-auto pb-1">
+          <button onclick="filterAudioCategory('all')" class="audio-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white" data-cat="all">ทั้งหมด</button>
+          <button onclick="filterAudioCategory('dual')" class="audio-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white" data-cat="dual">Dual Vocab</button>
+          <button onclick="filterAudioCategory('money')" class="audio-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white" data-cat="money">Money</button>
+          <button onclick="filterAudioCategory('grammar')" class="audio-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white" data-cat="grammar">Grammar Tenses</button>
+          <button onclick="filterAudioCategory('relative')" class="audio-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white" data-cat="relative">Relative Clauses</button>
+        </div>
+      </div>
+
+      <!-- AUDIO CARDS GRID -->
+      <div id="audioHubGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 5: DATABASE EXPLORER                                                  -->
+    <!-- ========================================================================= -->
+    <section id="tab-database" class="tab-content hidden space-y-6">
+      <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
+        <h2 class="heading-font text-xl font-bold text-white flex items-center gap-2">
+          <span class="p-2 rounded-lg bg-blue-500/20 text-blue-400 border border-blue-500/30"><i class="fa-solid fa-database"></i></span>
+          ฐานข้อมูลเนื้อหาบังคับ 100% (Knowledge Base Verbatim)
+        </h2>
+        <p class="text-sm text-slate-400 mt-1">
+          ตรวจสอบเนื้อหาดิบทั้ง 7 หมวดที่ใช้เป็นฐานข้อมูลสร้างข้อสอบและการ์ดคำศัพท์ ทุกตัวอักษรคงเดิมตามที่กำหนดไว้
+        </p>
+      </div>
+
+      <div class="space-y-6" id="rawDatabaseRender">
+        <!-- Render full raw KB cleanly -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="no-print bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500 mt-auto">
+    <div class="max-w-7xl mx-auto px-4">
+      English Exam Prep EdTech Platform • Developed strictly in accordance with the 100% Exact Knowledge Base
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT ENGINE                                                         -->
+  <!-- ========================================================================= -->
+  <script>
+    /* =======================================================================
+       1. KNOWLEDGE BASE (100% EXACT VERBATIM AS SPECIFIED)
+       ======================================================================= */
+    const KB = {
+      cat1_dual_vocab: [
+        { word: "remain", b: "to stay the same", g: "to stay in same place, keep the same condition." },
+        { word: "priority", b: "something that is the most important", g: "something that is more important than other things and must be done or dealt with first." },
+        { word: "estimate", b: "to guess a cost, size or amount", g: "making a careful guess or an approximate calculation about the size." },
+        { word: "reflect", b: "to show something or be a sign of something", g: "to bounce back light, to show an image in a mirror." },
+        { word: "loan", b: "How much money can you loan me? I'll pay back.", g: "an amount of money or an item that one person or group gives to another." },
+        { word: "obligation", b: "it's my obligation to care for patients", g: "An obligation is a duty." },
+        { word: "value", b: "I need to know the value of this antique watch.", g: "the regard, importance, worth." },
+        { word: "description", b: "the description help you understand how to play", g: "a spoken or written statement that tell you what someone or something is like." },
+        { word: "energetic", b: "very active, full of energy.", g: "having or showing a lot of physical and mental power." },
+        { word: "patient", b: "able to wait quietly and calmly", g: "a noun for a person getting medical care." }
+      ],
+
+      cat2_unit4_vocab: [
+        { word: "decent", definition: "acceptable or good" },
+        { word: "calculate", definition: "to use math to find an amount or number" },
+        { word: "reflect", definition: "to decide what you think about something" },
+        { word: "full-time", definition: "happening or working for the whole workweek" },
+        { word: "estimate", definition: "to guess a cost, size, or amount" },
+        { word: "recover", definition: "to get back something lost or money spent" },
+        { word: "judge", definition: "to show something or be a sign of something" },
+        { word: "additional", definition: "extra; more than is expected or typical" }
+      ],
+
+      cat2_fill_sentences: [
+        { sentence: "Did you read the description of the game? It helps you understand how to play.", target: "description", blanked: "Did you read the ________ of the game? It helps you understand how to play." },
+        { sentence: "I need to know the value of this antique watch before I decide to sell it.", target: "value", blanked: "I need to know the ________ of this antique watch before I decide to sell it." },
+        { sentence: "Divide your monthly transportation costs by four to see how much you spend each week.", target: "Divide", blanked: "________ your monthly transportation costs by four to see how much you spend each week." },
+        { sentence: "I think this budgeting app is completely useless. It doesn't help at all.", target: "useless", blanked: "I think this budgeting app is completely ________. It doesn't help at all." },
+        { sentence: "You can find that book in the mystery section of the library.", target: "section", blanked: "You can find that book in the mystery ________ of the library." },
+        { sentence: "Can we label this folder as \"receipts\" for better organization?", target: "label", blanked: "Can we ________ this folder as \"receipts\" for better organization?" },
+        { sentence: "For our next appointment, please email me a/an spreadsheet of your current daily spending.", target: "spreadsheet", blanked: "For our next appointment, please email me a/an ________ of your current daily spending." },
+        { sentence: "I think spending fifteen dollars a week on coffee is a reasonable expense, but my brother disagrees.", target: "expense", blanked: "I think spending fifteen dollars a week on coffee is a reasonable ________, but my brother disagrees." }
+      ],
+
+      cat3_money_expressions: [
+        { term: "cheap", definition: "not generous; not giving or spending money", example: "She's so cheap! She only paid me one dollar for cutting her grass." },
+        { term: "broke", definition: "having no money", example: "I'm broke, so I can't afford to ride the subway." },
+        { term: "nest egg", definition: "an amount of money saved for the future", example: "I have a nest egg for the day I retire." },
+        { term: "pay into", definition: "to put money into an account", example: "I pay into my savings account every week." },
+        { term: "pay off", definition: "to finish paying back money that was borrowed", example: "I finally paid off the debt I owed my father." },
+        { term: "pay up", definition: "to have to pay for something", example: "I have to pay up by Monday because that's what I agreed to." }
+      ],
+
+      cat3_test_sentences: [
+        { sentence: "After spending all his money on concert tickets, Jason was completely broke.", target: "broke", blanked: "After spending all his money on concert tickets, Jason was completely ________." },
+        { sentence: "If you want a comfortable retirement, you should pay into a pension regularly.", target: "pay into", blanked: "If you want a comfortable retirement, you should ________ a pension regularly." },
+        { sentence: "He is so cheap - he reuses aluminum foil.", target: "cheap", blanked: "He is so ________ - he reuses aluminum foil." },
+        { sentence: "Grandma has a nice nest egg saved up for emergencies.", target: "nest egg", blanked: "Grandma has a nice ________ saved up for emergencies." },
+        { sentence: "The landlord told us we had to pay up by Friday or move!", target: "pay up", blanked: "The landlord told us we had to ________ by Friday or move!" }
+      ],
+
+      cat4_future_perfect: {
+        formula: "Subject + will + have + Past participle",
+        sentences: [
+          { sentence: "By this time next year, she will have graduated from university.", target: "will have graduated", blanked: "By this time next year, she ________ from university." },
+          { sentence: "They will have finished the project before the deadline.", target: "will have finished", blanked: "They ________ the project before the deadline." },
+          { sentence: "We will have moved into our new house by September.", target: "will have moved", blanked: "We ________ into our new house by September." },
+          { sentence: "You will have completed the training course by the time the job starts.", target: "will have completed", blanked: "You ________ the training course by the time the job starts." },
+          { sentence: "He will have written ten books by the end of the decade.", target: "will have written", blanked: "He ________ ten books by the end of the decade." }
+        ]
+      },
+
+      cat4_future_perfect_continuous: {
+        formula: "Subject + will + have been + Verb-ing",
+        sentences: [
+          { sentence: "By next month, I will have been working on this project for a year.", target: "will have been working", blanked: "By next month, I ________ on this project for a year." },
+          { sentence: "She will have been studying medicine for six years by the time she graduates.", target: "will have been studying", blanked: "She ________ medicine for six years by the time she graduates." },
+          { sentence: "They will have been traveling around Europe for three weeks before returning home.", target: "will have been traveling", blanked: "They ________ around Europe for three weeks before returning home." },
+          { sentence: "We will have been waiting for over an hour by the time the train arrives.", target: "will have been waiting", blanked: "We ________ for over an hour by the time the train arrives." },
+          { sentence: "He will have been living in London for a decade by 2030.", target: "will have been living", blanked: "He ________ in London for a decade by 2030." }
+        ]
+      },
+
+      cat5_personality_vocab: [
+        { word: "generous", definition: "willing to give often and a lot" },
+        { word: "helpful", definition: "able to help effectively" },
+        { word: "cautious", definition: "careful to avoid dangerous situations" },
+        { word: "ambitious", definition: "having a strong wish to succeed" },
+        { word: "nasty", definition: "mean or unkind; the opposite of pleasant" },
+        { word: "sensitive", definition: "easily affected by others' emotions or feelings" },
+        { word: "energetic", definition: "very active, full of energy" },
+        { word: "patient", definition: "able to wait quietly and calmly" }
+      ],
+
+      cat6_personality_idioms: [
+        { idiom: "worker bee", sentence: "My mom is a worker bee.", target: "worker bee", blanked: "My mom is a ________." },
+        { idiom: "laid-back", sentence: "My brother is very laid-back.", target: "laid-back", blanked: "My brother is very ________." },
+        { idiom: "know-it-all", sentence: "Aom is such a know-it-all.", target: "know-it-all", blanked: "Aom is such a ________." },
+        { idiom: "go-getter", sentence: "Gam is a real go-getter.", target: "go-getter", blanked: "Gam is a real ________." },
+        { idiom: "social butterfly", sentence: "Jib is a social butterfly.", target: "social butterfly", blanked: "Jib is a social ________." }
+      ],
+
+      cat7_relative_clauses: {
+        rule: "กฎบังคับ: ต้องมีเครื่องหมาย Commas ขยายคำนามเฉพาะ",
+        sentences: [
+          { pronoun: "who", sentence: "My mother, who works at a hospital, is very busy.", blanked: "My mother, ________ works at a hospital, is very busy." },
+          { pronoun: "which", sentence: "Bangkok, which is the capital of Thailand, is a large city.", blanked: "Bangkok, ________ is the capital of Thailand, is a large city." },
+          { pronoun: "which", sentence: "My laptop, which I bought last year, is still working well.", blanked: "My laptop, ________ I bought last year, is still working well." },
+          { pronoun: "whose", sentence: "Peter, whose father is a doctor, lives next door.", blanked: "Peter, ________ father is a doctor, lives next door." },
+          { pronoun: "whose", sentence: "Anna, whose brother is a pilot, is my classmate.", blanked: "Anna, ________ brother is a pilot, is my classmate." },
+          { pronoun: "where", sentence: "My school, where I study, is very big.", blanked: "My school, ________ I study, is very big." },
+          { pronoun: "where", sentence: "The restaurant, where we had dinner, was excellent.", blanked: "The restaurant, ________ we had dinner, was excellent." },
+          { pronoun: "whom", sentence: "Mr. Brown, whom I met yesterday, is our new teacher.", blanked: "Mr. Brown, ________ I met yesterday, is our new teacher." }
+        ]
+      }
+    };
+
+    /* =======================================================================
+       2. TEXT-TO-SPEECH (TTS) SYSTEM
+       ======================================================================= */
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        alert("เบราว์เซอร์ของคุณยังไม่รองรับ Web Speech API");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const cleanText = text.replace(/_+/g, 'blank');
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'en-US';
+      const rateInput = document.getElementById('ttsRate');
+      utterance.rate = rateInput ? parseFloat(rateInput.value) : 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    /* =======================================================================
+       3. NAVIGATION & TABS
+       ======================================================================= */
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(el => {
+        el.classList.remove('bg-indigo-600', 'text-white', 'shadow');
+        el.classList.add('text-slate-300');
+      });
+
+      const target = document.getElementById(`tab-${tabId}`);
+      const btn = document.getElementById(`tabBtn-${tabId}`);
+      if (target) target.classList.remove('hidden');
+      if (btn) {
+        btn.classList.add('bg-indigo-600', 'text-white', 'shadow');
+        btn.classList.remove('text-slate-300');
+      }
+
+      if (tabId === 'cheat-sheet') renderCheatSheet();
+      if (tabId === 'audio-hub') renderAudioHub();
+      if (tabId === 'database') renderDatabase();
+    }
+
+    /* =======================================================================
+       4. DUAL-DEFINITION FLASHCARDS ENGINE
+       ======================================================================= */
+    let fcIndex = 0;
+    let fcScoreCorrect = 0;
+    let fcScoreTotal = 0;
+    let fcStreak = 0;
+    let currentFcItem = null;
+    let currentFcSource = null; // 'b' or 'g'
+    let isFlipped = false;
+
+    // Ordered or Shuffled list of dual items
+    let dualItems = [...KB.cat1_dual_vocab];
+
+    function setFcMode(mode) {
+      document.getElementById('fcMode-guess').className = mode === 'guess' 
+        ? "px-4 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white shadow"
+        : "px-4 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white";
+      document.getElementById('fcMode-flip').className = mode === 'flip'
+        ? "px-4 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white shadow"
+        : "px-4 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white";
+
+      if (mode === 'guess') {
+        document.getElementById('fcView-guess').classList.remove('hidden');
+        document.getElementById('fcView-flip').classList.add('hidden');
+        loadGuessQuestion();
+      } else {
+        document.getElementById('fcView-guess').classList.add('hidden');
+        document.getElementById('fcView-flip').classList.remove('hidden');
+        loadFlipCard();
+      }
+    }
+
+    function loadGuessQuestion() {
+      if (fcIndex >= dualItems.length) fcIndex = 0;
+      currentFcItem = dualItems[fcIndex];
+      // randomly pick 'b' or 'g'
+      currentFcSource = Math.random() < 0.5 ? 'b' : 'g';
+
+      document.getElementById('guessIndex').innerText = fcIndex + 1;
+      document.getElementById('guessWord').innerText = currentFcItem.word;
+      document.getElementById('guessDefinition').innerText = `"${currentFcItem[currentFcSource]}"`;
+
+      // reset result banner and enable buttons
+      document.getElementById('guessResult').classList.add('hidden');
+      document.getElementById('guessButtons').classList.remove('hidden');
+    }
+
+    function submitFcGuess(chosenSource) {
+      fcScoreTotal++;
+      const isCorrect = chosenSource === currentFcSource;
+      if (isCorrect) {
+        fcScoreCorrect++;
+        fcStreak++;
+      } else {
+        fcStreak = 0;
+      }
+
+      document.getElementById('fcScore').innerText = `${fcScoreCorrect} / ${fcScoreTotal}`;
+      document.getElementById('fcStreak').innerText = `${fcStreak} 🔥`;
+
+      const resultBanner = document.getElementById('guessResult');
+      const resultHeader = document.getElementById('guessResultHeader');
+
+      resultBanner.className = isCorrect 
+        ? "mt-6 p-4 rounded-xl border bg-emerald-950/70 border-emerald-500 text-emerald-200"
+        : "mt-6 p-4 rounded-xl border bg-rose-950/70 border-rose-500 text-rose-200";
+
+      resultHeader.innerHTML = isCorrect
+        ? `<i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i> ถูกต้องแม่นยำ! ข้อความนี้มาจาก ${currentFcSource === 'b' ? '📘 Book (b)' : '🌐 Google (g)'}`
+        : `<i class="fa-solid fa-circle-xmark text-rose-400 text-xl"></i> ยังไม่ถูกต้อง! ข้อความนี้มาจาก ${currentFcSource === 'b' ? '📘 Book (b)' : '🌐 Google (g)'}`;
+
+      document.getElementById('guessDetailB').innerText = currentFcItem.b;
+      document.getElementById('guessDetailG').innerText = currentFcItem.g;
+
+      document.getElementById('guessButtons').classList.add('hidden');
+      resultBanner.classList.remove('hidden');
+    }
+
+    function nextFcQuestion() {
+      fcIndex = (fcIndex + 1) % dualItems.length;
+      loadGuessQuestion();
+    }
+
+    function speakFcCurrent() {
+      if (currentFcItem) {
+        speakText(`${currentFcItem.word}. ${currentFcItem[currentFcSource]}`);
+      }
+    }
+
+    /* Flip Card Logic */
+    let flipIndexVal = 0;
+    function loadFlipCard() {
+      if (flipIndexVal >= dualItems.length) flipIndexVal = 0;
+      if (flipIndexVal < 0) flipIndexVal = dualItems.length - 1;
+
+      const item = dualItems[flipIndexVal];
+      document.getElementById('flipIndex').innerText = flipIndexVal + 1;
+      document.getElementById('flipFrontWord').innerText = item.word;
+      document.getElementById('flipBackWord').innerText = item.word;
+      document.getElementById('flipDefB').innerText = item.b;
+      document.getElementById('flipDefG').innerText = item.g;
+
+      // Reset flip
+      isFlipped = false;
+      document.getElementById('flipCardInner').classList.remove('rotate-y-180');
+    }
+
+    function toggleCardFlip() {
+      isFlipped = !isFlipped;
+      const inner = document.getElementById('flipCardInner');
+      if (isFlipped) {
+        inner.classList.add('rotate-y-180');
+      } else {
+        inner.classList.remove('rotate-y-180');
+      }
+    }
+
+    function prevFlipCard() {
+      flipIndexVal--;
+      loadFlipCard();
+    }
+
+    function nextFlipCard() {
+      flipIndexVal++;
+      loadFlipCard();
+    }
+
+    function shuffleFlipCards() {
+      dualItems = [...KB.cat1_dual_vocab].sort(() => Math.random() - 0.5);
+      flipIndexVal = 0;
+      loadFlipCard();
+    }
+
+    /* =======================================================================
+       5. EXACT-MATCH MOCK EXAM SIMULATOR
+       ======================================================================= */
+    let examQuestions = [];
+    let currentQIndex = 0;
+    let userAnswers = {};
+    let examTimerInterval = null;
+    let timeRemaining = 900;
+
+    function generateExactQuestions(sectionType) {
+      let pool = [];
+
+      // 1. DUAL VOCAB QUESTIONS (MCQ)
+      KB.cat1_dual_vocab.forEach(item => {
+        // Book def question
+        const otherBookDefs = KB.cat1_dual_vocab.filter(x => x.word !== item.word).map(x => x.b);
+        const distractorsB = otherBookDefs.sort(() => Math.random() - 0.5).slice(0, 3);
+        const optionsB = [item.b, ...distractorsB].sort(() => Math.random() - 0.5);
+        pool.push({
+          type: 'mcq',
+          category: 'หมวดที่ 1: คำศัพท์เน้นย้ำ (Dual Vocab)',
+          prompt: `What is the Book (b) definition of "${item.word}"?`,
+          correctAnswer: item.b,
+          options: optionsB,
+          explanation: `ในหมวดที่ 1 คำว่า "${item.word}" มีนิยาม (b) คือ "${item.b}" และ (g) คือ "${item.g}"`
+        });
+
+        // Google def question
+        const otherGoogleDefs = KB.cat1_dual_vocab.filter(x => x.word !== item.word).map(x => x.g);
+        const distractorsG = otherGoogleDefs.sort(() => Math.random() - 0.5).slice(0, 3);
+        const optionsG = [item.g, ...distractorsG].sort(() => Math.random() - 0.5);
+        pool.push({
+          type: 'mcq',
+          category: 'หมวดที่ 1: คำศัพท์เน้นย้ำ (Dual Vocab)',
+          prompt: `What is the Google (g) definition of "${item.word}"?`,
+          correctAnswer: item.g,
+          options: optionsG,
+          explanation: `ในหมวดที่ 1 คำว่า "${item.word}" มีนิยาม (g) คือ "${item.g}"`
+        });
+      });
+
+      // 2. UNIT 4 VOCAB & MATCH (MCQ)
+      KB.cat2_unit4_vocab.forEach(item => {
+        const otherDefs = KB.cat2_unit4_vocab.filter(x => x.word !== item.word).map(x => x.definition);
+        const distractors = otherDefs.sort(() => Math.random() - 0.5).slice(0, 3);
+        const options = [item.definition, ...distractors].sort(() => Math.random() - 0.5);
+        pool.push({
+          type: 'mcq',
+          category: 'หมวดที่ 2: Unit 4 - Vocabulary & Match',
+          prompt: `Which definition correctly matches the word "${item.word}"?`,
+          correctAnswer: item.definition,
+          options: options,
+          explanation: `ตามฐานข้อมูล Unit 4: "${item.word}" -> "${item.definition}"`
+        });
+      });
+
+      // 3. UNIT 4 SENTENCE FILL (Fill/MCQ from KB targets)
+      const cat2Targets = KB.cat2_fill_sentences.map(x => x.target);
+      KB.cat2_fill_sentences.forEach(item => {
+        const otherTargets = cat2Targets.filter(t => t !== item.target);
+        const distractors = otherTargets.sort(() => Math.random() - 0.5).slice(0, 3);
+        const options = [item.target, ...distractors].sort(() => Math.random() - 0.5);
+        pool.push({
+          type: 'fill',
+          category: 'หมวดที่ 2: Unit 4 - ประโยคเติมคำศัพท์',
+          prompt: item.blanked,
+          correctAnswer: item.target,
+          options: options,
+          fullSentence: item.sentence,
+          explanation: `ประโยคที่ถูกต้องตามหลักสูตร: "${item.sentence}" (เติม "${item.target}")`
+        });
+      });
+
+      // 4. UNIT 4 MONEY EXPRESSIONS (MCQ & Sentence Fill)
+      const moneyTerms = KB.cat3_money_expressions.map(x => x.term);
+      KB.cat3_money_expressions.forEach(item => {
+        const otherDefs = KB.cat3_money_expressions.filter(x => x.term !== item.term).map(x => x.definition);
+        const distractors = otherDefs.sort(() => Math.random() - 0.5).slice(0, 3);
+        const options = [item.definition, ...distractors].sort(() => Math.random() - 0.5);
+        pool.push({
+          type: 'mcq',
+          category: 'หมวดที่ 3: Unit 4 - Expressions About Money',
+          prompt: `What is the exact definition of "${item.term}"?`,
+          correctAnswer: item.definition,
+          options: options,
+          explanation: `ตามฐานข้อมูล Unit 4 Money: "${item.term}" หมายถึง "${item.definition}" (เช่น "${item.example}")`
+        });
+      });
+
+      KB.cat3_test_sentences.forEach(item => {
+        const otherTerms = moneyTerms.filter(t => t !== item.target);
+        const distractors = otherTerms.sort(() => Math.random() - 0.5).slice(0, 3);
+        const options = [item.target, ...distractors].sort(() => Math.random() - 0.5);
+        pool.push({
+          type: 'fill',
+          category: 'หมวดที่ 3: Unit 4 - ประโยคทดสอบ Money',
+          prompt: item.blanked,
+          correctAnswer: item.target,
+          options: options,
+          fullSentence: item.sentence,
+          explanation: `ประโยคทดสอบในหมวดที่ 3: "${item.sentence}" (เติมสำนวน "${item.target}")`
+        });
+      });
+
+      // 5. UNIT 4 GRAMMAR: FUTURE PERFECT & CONTINUOUS
+      const fpTargets = KB.cat4_future_perfect.sentences.map(x => x.target);
+      const fpcTargets = KB.cat4_future_perfect_continuous.sentences.map(x => x.target);
+      const allGrammarTargets = [...fpTargets, ...fpcTargets];
+
+      KB.cat4_future_perfect.sentences.forEach(item => {
+        const otherTargets = allGrammarTargets.filter(t => t !== item.target);
+        const distractors = otherTargets.sort(() => Math.random() - 0.5).slice(0, 3);
+        const options = [item.target, ...distractors].sort(() => Math.random() - 0.5);
+        pool.push({
+          type: 'fill',
+          category: 'หมวดที่ 4: Future Perfect Tense',
+          prompt: item.blanked,
+          correctAnswer: item.target,
+          options: options,
+          fullSentence: item.sentence,
+          explanation: `โครงสร้าง Future Perfect: Subject + will + have + V.3 ประโยคในฐานข้อมูลคือ "${item.sentence}"`
+        });
+      });
+
+      KB.cat4_future_perfect_continuous.sentences.forEach(item => {
+        const otherTargets = allGrammarTargets.filter(t => t !== item.target);
+        const distractors = otherTargets.sort(() => Math.random() - 0.5).slice(0, 3);
+        const options = [item.target, ...distractors].sort(() => Math.random() - 0.5);
+        pool.push({
+          type: 'fill',
+          category: 'หมวดที่ 4: Future Perfect Continuous Tense',
+          prompt: item.blanked,
+          correctAnswer: item.target,
+          options: options,
+          fullSentence: item.sentence,
+          explanation: `โครงสร้าง Future Perfect Continuous: Subject + will + have been + V-ing ประโยคในฐานข้อมูลคือ "${item.sentence}"`
+        });
+      });
+
+      // 6. UNIT 5 PERSONALITY VOCAB
+      KB.cat5_personality_vocab.forEach(item => {
+        const otherDefs = KB.cat5_personality_vocab.filter(x => x.word !== item.word).map(x => x.definition);
+        const distractors = otherDefs.sort(() => Math.random() - 0.5).slice(0, 3);
+        const options = [item.definition, ...distractors].sort(() => Math.random() - 0.5);
+        pool.push({
+          type: 'mcq',
+          category: 'หมวดที่ 5: Unit 5 - Listening Vocabulary',
+          prompt: `What is the meaning of the personality adjective "${item.word}"?`,
+          correctAnswer: item.definition,
+          options: options,
+          explanation: `ตามฐานข้อมูล Unit 5: "${item.word}" -> "${item.definition}"`
+        });
+      });
+
+      // 7. UNIT 5 IDIOMS
+      const allIdioms = KB.cat6_personality_idioms.map(x => x.idiom);
+      KB.cat6_personality_idioms.forEach(item => {
+        const otherIdioms = allIdioms.filter(t => t !== item.target);
+        const distractors = otherIdioms.sort(() => Math.random() - 0.5).slice(0, 3);
+        const options = [item.target, ...distractors].sort(() => Math.random() - 0.5);
+        pool.push({
+          type: 'fill',
+          category: 'หมวดที่ 6: Unit 5 - Personality Idioms',
+          prompt: item.blanked,
+          correctAnswer: item.target,
+          options: options,
+          fullSentence: item.sentence,
+          explanation: `สำนวนในหมวดที่ 6: "${item.sentence}" (เติม "${item.target}")`
+        });
+      });
+
+      // 8. UNIT 5 RELATIVE CLAUSES
+      const allPronouns = ["who", "which", "whose", "where", "whom"];
+      KB.cat7_relative_clauses.sentences.forEach(item => {
+        const otherPronouns = allPronouns.filter(p => p !== item.pronoun);
+        const distractors = otherPronouns.sort(() => Math.random() - 0.5).slice(0, 3);
+        const options = [item.pronoun, ...distractors].sort(() => Math.random() - 0.5);
+        pool.push({
+          type: 'fill',
+          category: 'หมวดที่ 7: Non-defining Relative Clauses',
+          prompt: item.blanked,
+          correctAnswer: item.pronoun,
+          options: options,
+          fullSentence: item.sentence,
+          explanation: `กฎบังคับ: ต้องมีเครื่องหมาย Commas ขยายคำนามเฉพาะ ประโยคคือ "${item.sentence}" (ใช้ "${item.pronoun}")`
+        });
+      });
+
+      // Filter by section if requested
+      if (sectionType === 'mcq') {
+        pool = pool.filter(q => q.type === 'mcq');
+      } else if (sectionType === 'fill') {
+        pool = pool.filter(q => q.type === 'fill');
+      }
+
+      // Shuffle and pick 20 questions
+      pool = pool.sort(() => Math.random() - 0.5);
+      return pool.slice(0, 20);
+    }
+
+    function startNewExam() {
+      const sectionType = document.getElementById('examSectionSelect').value;
+      const duration = parseInt(document.getElementById('examTimerSelect').value);
+
+      examQuestions = generateExactQuestions(sectionType);
+      currentQIndex = 0;
+      userAnswers = {};
+
+      document.getElementById('examResultReport').classList.add('hidden');
+      document.getElementById('examActiveContainer').classList.remove('hidden');
+      document.getElementById('examStatusBar').classList.remove('hidden');
+
+      document.getElementById('totalQuestionsNum').innerText = examQuestions.length;
+      document.getElementById('examTotalCount').innerText = examQuestions.length;
+
+      // Timer setup
+      clearInterval(examTimerInterval);
+      if (duration > 0) {
+        timeRemaining = duration;
+        document.getElementById('timerDisplay').classList.remove('hidden');
+        updateTimerDisplay();
+        examTimerInterval = setInterval(() => {
+          timeRemaining--;
+          updateTimerDisplay();
+          if (timeRemaining <= 0) {
+            clearInterval(examTimerInterval);
+            alert("หมดเวลาทำข้อสอบแล้ว! ระบบจะส่งคำตอบของคุณโดยอัตโนมัติ");
+            submitExam(false);
+          }
+        }, 1000);
+      } else {
+        document.getElementById('timerDisplay').classList.add('hidden');
+      }
+
+      renderCurrentQuestion();
+    }
+
+    function updateTimerDisplay() {
+      const m = Math.floor(timeRemaining / 60);
+      const s = timeRemaining % 60;
+      document.getElementById('timerCountdown').innerText = 
+        `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function renderCurrentQuestion() {
+      const q = examQuestions[currentQIndex];
+      document.getElementById('currentQuestionNum').innerText = currentQIndex + 1;
+      document.getElementById('qCategoryBadge').innerText = q.category;
+      document.getElementById('qPromptText').innerText = q.prompt;
+
+      // Progress bar
+      const pct = ((currentQIndex + 1) / examQuestions.length) * 100;
+      document.getElementById('examProgressFill').style.width = `${pct}%`;
+
+      // Answered counter
+      document.getElementById('answeredCount').innerText = Object.keys(userAnswers).length;
+
+      // Options
+      const optionsContainer = document.getElementById('qOptionsList');
+      optionsContainer.innerHTML = '';
+
+      q.options.forEach((opt, idx) => {
+        const isSelected = userAnswers[currentQIndex] === opt;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.onclick = () => selectExamOption(opt);
+        btn.className = `w-full text-left p-4 rounded-xl border transition flex items-start gap-3 ${
+          isSelected 
+            ? 'bg-indigo-950/80 border-indigo-500 text-white font-semibold ring-2 ring-indigo-500/50' 
+            : 'bg-slate-900/60 border-slate-700 hover:border-slate-500 text-slate-200'
+        }`;
+
+        const letter = String.fromCharCode(65 + idx);
+        btn.innerHTML = `
+          <span class="w-6 h-6 rounded-lg ${isSelected ? 'bg-indigo-500 text-white' : 'bg-slate-800 text-slate-400'} flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">${letter}</span>
+          <span class="text-sm sm:text-base leading-relaxed code-font">${opt}</span>
+        `;
+        optionsContainer.appendChild(btn);
+      });
+
+      // Prev / Next button states
+      document.getElementById('btnPrevQ').disabled = currentQIndex === 0;
+      const nextBtn = document.getElementById('btnNextQ');
+      if (currentQIndex === examQuestions.length - 1) {
+        nextBtn.innerHTML = `ตรวจคำตอบ <i class="fa-solid fa-check ml-1.5"></i>`;
+        nextBtn.onclick = () => submitExam(true);
+      } else {
+        nextBtn.innerHTML = `ข้อถัดไป <i class="fa-solid fa-arrow-right ml-1.5"></i>`;
+        nextBtn.onclick = () => nextQuestion();
+      }
+    }
+
+    function selectExamOption(val) {
+      userAnswers[currentQIndex] = val;
+      renderCurrentQuestion();
+    }
+
+    function prevQuestion() {
+      if (currentQIndex > 0) {
+        currentQIndex--;
+        renderCurrentQuestion();
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQIndex < examQuestions.length - 1) {
+        currentQIndex++;
+        renderCurrentQuestion();
+      }
+    }
+
+    function speakCurrentExamQuestion() {
+      const q = examQuestions[currentQIndex];
+      if (q) speakText(q.prompt);
+    }
+
+    function submitExam(confirmManual) {
+      if (confirmManual) {
+        const unanswered = examQuestions.length - Object.keys(userAnswers).length;
+        if (unanswered > 0) {
+          if (!confirm(`คุณยังไม่ได้ตอบอีก ${unanswered} ข้อ ต้องการส่งกระดาษคำตอบเลยหรือไม่?`)) {
+            return;
+          }
+        }
+      }
+
+      clearInterval(examTimerInterval);
+      document.getElementById('examActiveContainer').classList.add('hidden');
+      document.getElementById('examStatusBar').classList.add('hidden');
+      document.getElementById('examResultReport').classList.remove('hidden');
+
+      // Calculate score
+      let score = 0;
+      examQuestions.forEach((q, idx) => {
+        if (userAnswers[idx] === q.correctAnswer) score++;
+      });
+
+      const total = examQuestions.length;
+      const pct = Math.round((score / total) * 100);
+
+      document.getElementById('finalScore').innerText = score;
+      document.getElementById('finalTotal').innerText = total;
+      document.getElementById('finalPercent').innerText = `(${pct}%)`;
+
+      const fb = document.getElementById('scoreFeedback');
+      if (pct >= 80) {
+        fb.innerText = "ยอดเยี่ยมมาก! คุณจำเนื้อหาและประโยคจากฐานข้อมูลได้อย่างแม่นยำ พร้อมลุยห้องสอบจริงแล้ว";
+      } else if (pct >= 50) {
+        fb.innerText = "ทำได้ดี! แต่ยังมีบางประโยคหรือตัวเลือกที่สับสน แนะนำให้ทบทวน Cheat Sheet แล้วลองทำอีกครั้ง";
+      } else {
+        fb.innerText = "พยายามอีกนิด! แนะนำให้เปิดโหมด Flashcards เพื่อทวนความจำ และอ่าน Cheat Sheet ก่อนสอบอีกรอบครับ";
+      }
+
+      renderExamReview();
+    }
+
+    function renderExamReview() {
+      const list = document.getElementById('reviewQuestionsList');
+      list.innerHTML = '';
+
+      examQuestions.forEach((q, idx) => {
+        const userAns = userAnswers[idx];
+        const isCorrect = userAns === q.correctAnswer;
+
+        const item = document.createElement('div');
+        item.className = `p-5 rounded-2xl border ${
+          isCorrect ? 'bg-slate-800/80 border-emerald-500/50' : 'bg-slate-800/80 border-rose-500/50'
+        } space-y-3`;
+
+        item.innerHTML = `
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold ${isCorrect ? 'text-emerald-400' : 'text-rose-400'}">
+              <i class="fa-solid ${isCorrect ? 'fa-check' : 'fa-xmark'} mr-1"></i> ข้อที่ ${idx + 1} (${isCorrect ? 'ถูกต้อง' : 'ผิด'})
+            </span>
+            <span class="text-slate-400">${q.category}</span>
+          </div>
+          <div class="text-white font-medium code-font">${q.prompt}</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-1">
+            <div class="p-2.5 rounded-lg ${isCorrect ? 'bg-emerald-950/60 text-emerald-200 border border-emerald-800' : 'bg-rose-950/60 text-rose-200 border border-rose-800'}">
+              <span class="font-bold">คำตอบของคุณ:</span> ${userAns || '<span class="italic text-slate-500">ไม่ได้ตอบ</span>'}
+            </div>
+            <div class="p-2.5 rounded-lg bg-emerald-950/60 text-emerald-200 border border-emerald-800 flex items-center justify-between">
+              <div><span class="font-bold">เฉลยที่ถูกต้อง:</span> ${q.correctAnswer}</div>
+              <button onclick="speakText('${q.correctAnswer.replace(/'/g, "\\'")}')" class="text-emerald-400 hover:text-white ml-2"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+          </div>
+          <div class="text-xs text-slate-400 pt-1 border-t border-slate-700/60">
+            <span class="text-indigo-400 font-semibold">คำอธิบายจาก KB:</span> ${q.explanation}
+          </div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function toggleReviewDetails() {
+      const el = document.getElementById('examReviewContainer');
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* =======================================================================
+       6. CHEAT SHEET RENDERER
+       ======================================================================= */
+    function renderCheatSheet() {
+      // Dual table
+      const dualTbody = document.getElementById('cheatSheetDualTable');
+      dualTbody.innerHTML = '';
+      KB.cat1_dual_vocab.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-800/50";
+        tr.innerHTML = `
+          <td class="border border-slate-700 p-2 font-bold text-white flex items-center justify-between">
+            <span>${item.word}</span>
+            <button onclick="speakText('${item.word}')" class="text-indigo-400 hover:text-white no-print"><i class="fa-solid fa-volume-high"></i></button>
+          </td>
+          <td class="border border-slate-700 p-2 text-sky-200">${item.b}</td>
+          <td class="border border-slate-700 p-2 text-emerald-200">${item.g}</td>
+        `;
+        dualTbody.appendChild(tr);
+      });
+
+      // Unit 4 vocab table
+      const u4Tbody = document.getElementById('cheatSheetUnit4VocabTable');
+      u4Tbody.innerHTML = '';
+      KB.cat2_unit4_vocab.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="border border-slate-700 p-2 font-bold text-white">${item.word}</td>
+          <td class="border border-slate-700 p-2 text-slate-300">${item.definition}</td>
+        `;
+        u4Tbody.appendChild(tr);
+      });
+
+      // Unit 4 Fill sentences
+      const fillContainer = document.getElementById('cheatSheetFillSentences');
+      fillContainer.innerHTML = '';
+      KB.cat2_fill_sentences.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = "flex items-start gap-1.5";
+        div.innerHTML = `
+          <span class="text-indigo-400 font-bold">${idx + 1}.</span>
+          <span class="text-slate-300">${item.sentence.replace(item.target, `<strong class="text-amber-300 underline font-semibold">${item.target}</strong>`)}</span>
+        `;
+        fillContainer.appendChild(div);
+      });
+
+      // Unit 4 Money expressions table
+      const moneyTbody = document.getElementById('cheatSheetMoneyTable');
+      moneyTbody.innerHTML = '';
+      KB.cat3_money_expressions.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="border border-slate-700 p-2 font-bold text-amber-300">${item.term}</td>
+          <td class="border border-slate-700 p-2 text-slate-300">${item.definition}</td>
+          <td class="border border-slate-700 p-2 text-slate-400 italic font-mono">${item.example}</td>
+        `;
+        moneyTbody.appendChild(tr);
+      });
+
+      // Future Perfect sentences
+      const fpList = document.getElementById('cheatSheetFuturePerfList');
+      fpList.innerHTML = '';
+      KB.cat4_future_perfect.sentences.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = item.sentence.replace(item.target, `<strong class="text-sky-300 font-semibold underline">${item.target}</strong>`);
+        fpList.appendChild(li);
+      });
+
+      // Future Perfect Continuous sentences
+      const fpcList = document.getElementById('cheatSheetFuturePerfContList');
+      fpcList.innerHTML = '';
+      KB.cat4_future_perfect_continuous.sentences.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = item.sentence.replace(item.target, `<strong class="text-emerald-300 font-semibold underline">${item.target}</strong>`);
+        fpcList.appendChild(li);
+      });
+
+      // Unit 5 Personality vocab
+      const u5Tbody = document.getElementById('cheatSheetUnit5VocabTable');
+      u5Tbody.innerHTML = '';
+      KB.cat5_personality_vocab.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="border border-slate-700 p-2 font-bold text-white w-24">${item.word}</td>
+          <td class="border border-slate-700 p-2 text-slate-300">${item.definition}</td>
+        `;
+        u5Tbody.appendChild(tr);
+      });
+
+      // Idioms
+      const idiomsList = document.getElementById('cheatSheetIdiomsList');
+      idiomsList.innerHTML = '';
+      KB.cat6_personality_idioms.forEach(item => {
+        const div = document.createElement('div');
+        div.innerHTML = `• <strong class="text-amber-300">${item.idiom}:</strong> <span class="italic text-slate-400">"${item.sentence}"</span>`;
+        idiomsList.appendChild(div);
+      });
+
+      // Relative clauses
+      const relList = document.getElementById('cheatSheetRelClausesList');
+      relList.innerHTML = '';
+      KB.cat7_relative_clauses.sentences.forEach(item => {
+        const div = document.createElement('div');
+        div.className = "p-2 rounded bg-slate-800/60 border border-slate-700";
+        div.innerHTML = `<span class="px-1.5 py-0.5 rounded bg-indigo-900 text-indigo-300 font-bold uppercase text-[10px] mr-1.5">${item.pronoun}</span> <span class="text-slate-200">${item.sentence.replace(item.pronoun, `<strong class="text-amber-300 underline font-semibold">${item.pronoun}</strong>`)}</span>`;
+        relList.appendChild(div);
+      });
+    }
+
+    function copyCheatSheetMarkdown() {
+      let md = `# ENGLISH EXAM HIGH-YIELD CHEAT SHEET (100% Exact Knowledge Base)\n\n`;
+      md += `## 1. คำศัพท์เน้นย้ำ (Dual Definitions: Book [b] vs Google [g])\n`;
+      KB.cat1_dual_vocab.forEach(item => {
+        md += `- **${item.word}**:\n  - (b) ${item.b}\n  - (g) ${item.g}\n`;
+      });
+      md += `\n## 2. Unit 4 - Vocabulary & Match\n`;
+      KB.cat2_unit4_vocab.forEach(item => {
+        md += `- **${item.word}** -> ${item.definition}\n`;
+      });
+      md += `\n### Unit 4 ประโยคเติมคำศัพท์:\n`;
+      KB.cat2_fill_sentences.forEach(item => {
+        md += `- ${item.sentence}\n`;
+      });
+      md += `\n## 3. Unit 4 - Expressions About Money\n`;
+      KB.cat3_money_expressions.forEach(item => {
+        md += `- **${item.term}** | ${item.definition} | *${item.example}*\n`;
+      });
+      md += `\n## 4. Unit 4 - Grammar\n`;
+      md += `### Future Perfect (Subject + will + have + Past participle):\n`;
+      KB.cat4_future_perfect.sentences.forEach(item => {
+        md += `- ${item.sentence}\n`;
+      });
+      md += `\n### Future Perfect Continuous (Subject + will + have been + Verb-ing):\n`;
+      KB.cat4_future_perfect_continuous.sentences.forEach(item => {
+        md += `- ${item.sentence}\n`;
+      });
+      md += `\n## 5. Unit 5 - Personality Vocab & Idioms\n`;
+      KB.cat5_personality_vocab.forEach(item => {
+        md += `- **${item.word}** -> ${item.definition}\n`;
+      });
+      KB.cat6_personality_idioms.forEach(item => {
+        md += `- **${item.idiom}** (${item.sentence})\n`;
+      });
+      md += `\n## 6. Unit 5 - Grammar: Non-defining Relative Clauses (กฎบังคับ: ต้องมี Commas ขยายคำนามเฉพาะ)\n`;
+      KB.cat7_relative_clauses.sentences.forEach(item => {
+        md += `- [${item.pronoun}] ${item.sentence}\n`;
+      });
+
+      navigator.clipboard.writeText(md).then(() => {
+        alert("คัดลอกสรุป Cheat Sheet (Markdown) เรียบร้อยแล้ว!");
+      });
+    }
+
+    /* =======================================================================
+       7. AUDIO HUB RENDERER
+       ======================================================================= */
+    let currentAudioFilter = 'all';
+
+    function filterAudioCategory(cat) {
+      currentAudioFilter = cat;
+      document.querySelectorAll('.audio-filter-btn').forEach(b => {
+        if (b.dataset.cat === cat) {
+          b.className = "audio-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white";
+        } else {
+          b.className = "audio-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white";
+        }
+      });
+      renderAudioHub();
+    }
+
+    function renderAudioHub() {
+      const grid = document.getElementById('audioHubGrid');
+      const search = (document.getElementById('audioSearchInput')?.value || '').toLowerCase();
+      grid.innerHTML = '';
+
+      let items = [];
+
+      // Dual Vocab
+      if (currentAudioFilter === 'all' || currentAudioFilter === 'dual') {
+        KB.cat1_dual_vocab.forEach(v => {
+          items.push({ cat: 'dual', badge: 'Dual Vocab', title: v.word, textToPlay: `${v.word}. Book definition: ${v.b}. Google definition: ${v.g}`, desc: `(b) ${v.b} | (g) ${v.g}` });
+        });
+      }
+
+      // Money Expressions
+      if (currentAudioFilter === 'all' || currentAudioFilter === 'money') {
+        KB.cat3_money_expressions.forEach(m => {
+          items.push({ cat: 'money', badge: 'Money Expression', title: m.term, textToPlay: `${m.term}. Meaning: ${m.definition}. Example: ${m.example}`, desc: `${m.definition} — "${m.example}"` });
+        });
+        KB.cat3_test_sentences.forEach(s => {
+          items.push({ cat: 'money', badge: 'Money Sentence', title: s.target, textToPlay: s.sentence, desc: s.sentence });
+        });
+      }
+
+      // Grammar Tenses
+      if (currentAudioFilter === 'all' || currentAudioFilter === 'grammar') {
+        KB.cat4_future_perfect.sentences.forEach(s => {
+          items.push({ cat: 'grammar', badge: 'Future Perfect', title: s.target, textToPlay: s.sentence, desc: s.sentence });
+        });
+        KB.cat4_future_perfect_continuous.sentences.forEach(s => {
+          items.push({ cat: 'grammar', badge: 'Future Perf. Cont.', title: s.target, textToPlay: s.sentence, desc: s.sentence });
+        });
+      }
+
+      // Relative Clauses
+      if (currentAudioFilter === 'all' || currentAudioFilter === 'relative') {
+        KB.cat7_relative_clauses.sentences.forEach(s => {
+          items.push({ cat: 'relative', badge: `Relative (${s.pronoun})`, title: s.pronoun, textToPlay: s.sentence, desc: s.sentence });
+        });
+      }
+
+      // Filter by search
+      const filtered = items.filter(i => i.title.toLowerCase().includes(search) || i.desc.toLowerCase().includes(search));
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "p-4 bg-slate-800 border border-slate-700 hover:border-indigo-500 rounded-2xl transition space-y-3 flex flex-col justify-between";
+        card.innerHTML = `
+          <div class="space-y-1.5">
+            <div class="flex justify-between items-center text-xs">
+              <span class="px-2 py-0.5 rounded-full bg-slate-900 border border-slate-700 text-indigo-400 font-semibold">${item.badge}</span>
+            </div>
+            <div class="font-bold text-base text-white code-font">${item.title}</div>
+            <div class="text-xs text-slate-400 leading-relaxed">${item.desc}</div>
+          </div>
+          <div class="pt-2 border-t border-slate-700/60 flex justify-end">
+            <button onclick="speakText('${item.textToPlay.replace(/'/g, "\\'")}')" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-volume-high"></i> ฟังเสียงอ่าน
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    /* =======================================================================
+       8. DATABASE EXPLORER RENDERER
+       ======================================================================= */
+    function renderDatabase() {
+      const container = document.getElementById('rawDatabaseRender');
+      container.innerHTML = `
+        <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 space-y-4">
+          <h3 class="text-lg font-bold text-indigo-400">หมวดที่ 1: คำศัพท์เน้นย้ำ (แบ่งนิยาม b = Book, g = Google)</h3>
+          <div class="space-y-2 text-sm text-slate-300">
+            ${KB.cat1_dual_vocab.map(i => `<div class="p-2.5 rounded bg-slate-900 border border-slate-700/80"><strong class="text-white">${i.word}:</strong> <span class="text-sky-300">(b)</span> ${i.b} / <span class="text-emerald-300">(g)</span> ${i.g}</div>`).join('')}
+          </div>
+        </div>
+
+        <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 space-y-4">
+          <h3 class="text-lg font-bold text-indigo-400">หมวดที่ 2: Unit 4 - Vocabulary & Match & ประโยคเติมคำศัพท์</h3>
+          <div class="space-y-2 text-sm text-slate-300">
+            ${KB.cat2_unit4_vocab.map(i => `<div class="p-2 rounded bg-slate-900 border border-slate-700/80"><strong class="text-white">${i.word}</strong> -&gt; ${i.definition}</div>`).join('')}
+          </div>
+          <div class="font-bold text-amber-300 text-sm pt-2">ประโยคเติมคำศัพท์:</div>
+          <ul class="list-disc list-inside space-y-1 text-xs text-slate-300">
+            ${KB.cat2_fill_sentences.map(s => `<li>${s.sentence}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 space-y-4">
+          <h3 class="text-lg font-bold text-indigo-400">หมวดที่ 3: Unit 4 - Expressions About Money</h3>
+          <div class="space-y-2 text-sm text-slate-300">
+            ${KB.cat3_money_expressions.map(i => `<div class="p-2.5 rounded bg-slate-900 border border-slate-700/80"><strong class="text-amber-300">${i.term}</strong> | ${i.definition} | <em>${i.example}</em></div>`).join('')}
+          </div>
+          <div class="font-bold text-amber-300 text-sm pt-2">ประโยคทดสอบ:</div>
+          <ul class="list-disc list-inside space-y-1 text-xs text-slate-300">
+            ${KB.cat3_test_sentences.map(s => `<li>${s.sentence}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 space-y-4">
+          <h3 class="text-lg font-bold text-indigo-400">หมวดที่ 4: Unit 4 - Grammar</h3>
+          <div class="space-y-2 text-sm text-slate-300">
+            <div class="font-bold text-sky-400">Future Perfect (Subject + will + have + Past participle):</div>
+            <ul class="list-disc list-inside space-y-1 text-xs text-slate-300">
+              ${KB.cat4_future_perfect.sentences.map(s => `<li>${s.sentence}</li>`).join('')}
+            </ul>
+            <div class="font-bold text-emerald-400 pt-3">Future Perfect Continuous (Subject + will + have been + Verb-ing):</div>
+            <ul class="list-disc list-inside space-y-1 text-xs text-slate-300">
+              ${KB.cat4_future_perfect_continuous.sentences.map(s => `<li>${s.sentence}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+
+        <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 space-y-4">
+          <h3 class="text-lg font-bold text-indigo-400">หมวดที่ 5 & 6: Unit 5 - Personality Vocab & Idioms</h3>
+          <div class="space-y-2 text-sm text-slate-300">
+            ${KB.cat5_personality_vocab.map(i => `<div class="p-2 rounded bg-slate-900 border border-slate-700/80"><strong class="text-white">${i.word}</strong> -&gt; ${i.definition}</div>`).join('')}
+          </div>
+          <div class="font-bold text-amber-300 text-sm pt-2">Idioms:</div>
+          <ul class="list-disc list-inside space-y-1 text-xs text-slate-300">
+            ${KB.cat6_personality_idioms.map(i => `<li><strong>${i.idiom}</strong> (${i.sentence})</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 space-y-4">
+          <h3 class="text-lg font-bold text-indigo-400">หมวดที่ 7: Unit 5 - Grammar (Non-defining Relative Clauses)</h3>
+          <div class="p-3 bg-rose-950/40 rounded-xl border border-rose-800/60 text-xs text-rose-200">
+            ${KB.cat7_relative_clauses.rule}
+          </div>
+          <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
+            ${KB.cat7_relative_clauses.sentences.map(s => `<li><strong class="text-amber-300">${s.pronoun}:</strong> ${s.sentence}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+    }
+
+    // Initialize default tab
+    document.addEventListener('DOMContentLoaded', () => {
+      loadGuessQuestion();
+      renderCheatSheet();
+    });
+    // Trigger immediately
+    loadGuessQuestion();
+    renderCheatSheet();
+  </script>
+</body>
+</html>
